@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { registerValidator, loginValidation, chatsCreateValidation } from './validations/auth.js';
 import { validationResult } from 'express-validator'
 import UserModel from './models/Users.js';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs';
 import http from 'http';
 import { Server } from "socket.io";
 import Chat from "./models/Chat.js";
