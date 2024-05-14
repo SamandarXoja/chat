@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://samandarsaidahmadov98:8787172ss@cluster0.soqylcu
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-
+const PORT = process.env.PORT || 5555;
 app.use(cors());
 
 server.prependListener("request", (req, res) => {
@@ -212,9 +212,11 @@ function arraysEqual(arr1, arr2) {
 }
 
 
-server.listen(5555, (err) => {
+
+
+server.listen(PORT, (err) => {
     if (err) {
         return console.log(err);
     }
-    console.log('Server Ok');
-})
+    console.log(`Server is running on port ${PORT}`);
+});
