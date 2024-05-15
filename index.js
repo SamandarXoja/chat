@@ -24,6 +24,14 @@ server.prependListener("request", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
 });
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://chat-react-js.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+});
+
 app.use(express.json())
 
 let lastChatsList = [];
