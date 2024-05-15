@@ -16,9 +16,7 @@ mongoose.connect('mongodb+srv://samandarsaidahmadov98:8787172ss@cluster0.soqylcu
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-    transports: ['websocket']
-});
+const io = new Server(server);
 const PORT = process.env.PORT || 5555;
 app.use(cors());
 
