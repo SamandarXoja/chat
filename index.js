@@ -18,7 +18,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: 'https://chat-react-js.vercel.app',
+        origin: ['https://chat-react-js.vercel.app', 'http://localhost:5174'],
         methods: ["GET", "POST"]
     }
 });
@@ -26,11 +26,19 @@ const io = new Server(server, {
 const PORT = process.env.PORT || 5555;
 
 app.use(cors({
-    origin: 'https://chat-react-js.vercel.app',
+    origin: ['https://chat-react-js.vercel.app', 'http://localhost:5174'],
     methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://chat-react-js.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+});
 
 app.use(express.json());
 
