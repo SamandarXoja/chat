@@ -56,6 +56,7 @@ io.on('connection', (socket) => {
             await newChatMessage.save();
 
             io.emit('chatMessage', newChatMessage);
+            res.status(201).json(newChatMessage);
         } catch (err) {
             console.error(err);
         }
