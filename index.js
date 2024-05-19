@@ -166,6 +166,19 @@ app.get('/chats', async (req, res) => {
     }
 });
 
+
+app.get('/chats/users', async (req, res) => {
+    try {
+       const users = await UserModel.find();
+       res.json(users);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Ошибка при получении списка пользователей' });
+    }
+})
+
+
+
 server.listen(PORT, (err) => {
     if (err) {
         return console.log(err);
